@@ -10,7 +10,6 @@ import AppLayout from './AppLayout';
 import Cart from './components/Cart/Cart';
 import Offers from './components/Offers/Offers';
 import Search from './components/Search/Search';
-import SearchQueryPage from './components/Search/SearchQueryPage';
 import SuggestionContainer from './components/Search/SuggestionContainer';
 
 const appRouter = createBrowserRouter([

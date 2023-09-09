@@ -38,16 +38,20 @@ const Offers = () => {
   }, [filter, location]);
 
   const getRestaurantData = async (filterStr) => {
-    const { latitude, longitude } = getLocationDetails(location);
-    const url = FETCH_URL.replace('LATITUDE', latitude).replace(
-      'LONGITUDE',
-      longitude
-    );
-    const response = await fetch(url);
-    const resultantData = await response.json();
-    const restaurantList = getRestaurantList(resultantData?.data?.cards);
-    const sortedData = getSortedData(restaurantList, filter);
-    setFilteredRestaurants(sortedData);
+    try {
+      const { latitude, longitude } = getLocationDetails(location);
+      const url = FETCH_URL.replace('LATITUDE', latitude).replace(
+        'LONGITUDE',
+        longitude
+      );
+      const response = await fetch(url);
+      const resultantData = await response.json();
+      const restaurantList = getRestaurantList(resultantData?.data?.cards);
+      const sortedData = getSortedData(restaurantList, filter);
+      setFilteredRestaurants(sortedData);
+    } catch (e) {
+      setFilteredRestaurants(undefined);
+    }
   };
 
   return (

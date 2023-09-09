@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardSkeleton = () => {
   return (
-    <div className='w-8/12 animate-pulse md:w-5/12 rounded-2xl mx-auto mb-10 border shadow-xl flex flex-col px-3'>
+    <div className='w-10/12 animate-pulse lg:w-5/12 rounded-2xl mx-auto mb-10 border shadow-xl flex flex-col px-3'>
       <div id='header' className='w-full flex border-b-2 border-dotted py-4'>
         <div id='details' className='w-full flex flex-col'>
           <h2 className='w-48 h-6 bg-gray-300 text-base font-bold' />

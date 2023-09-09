@@ -44,7 +44,6 @@ const getDefaultSortOption = () => {
       return element;
     }
   });
-  console.log('Option: ', option);
 
   return option ? option[0].key : 'relevance';
 };

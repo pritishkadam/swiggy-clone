@@ -65,7 +65,7 @@ const RestaurantPage = () => {
       {restaurantMenu === null && (
         <RestaurantMenuSkeleton restaurantMenu={restaurantMenu} />
       )}
-      {restaurantMenu && <RestaurantMenu restaurantMenu={restaurantMenu} />}
+      {restaurantMenu && <RestaurantMenu restaurantMenu={restaurantMenu} restaurantDetails={restaurantDetails} />}
     </div>
   );
 };

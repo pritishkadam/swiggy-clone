@@ -20,16 +20,19 @@ const Search = () => {
   }, [location]);
 
   const getCategoriesData = async () => {
-    const { latitude, longitude } = getLocationDetails(location);
-    const url = FETCH_URL.replace('LATITUDE', latitude).replace(
-      'LONGITUDE',
-      longitude
-    );
-    const response = await fetch(url);
-    const resultantData = await response.json();
-    const cuisinesList = getCuisines(resultantData?.data?.cards);
-    console.log('CuisinesList: ', cuisinesList);
-    setCuisines(cuisinesList);
+    try {
+      const { latitude, longitude } = getLocationDetails(location);
+      const url = FETCH_URL.replace('LATITUDE', latitude).replace(
+        'LONGITUDE',
+        longitude
+      );
+      const response = await fetch(url);
+      const resultantData = await response.json();
+      const cuisinesList = getCuisines(resultantData?.data?.cards);
+      setCuisines(cuisinesList);
+    } catch (e) {
+      setCuisines(undefined);
+    }
   };
 
   useEffect(() => {
@@ -50,7 +53,6 @@ const Search = () => {
       );
       const response = await fetch(url + searchText);
       const resultantData = await response.json();
-      console.log('Search: resultantData: ', resultantData);
       setCallSuggestionAPI(false);
       setSuggestions(resultantData?.data?.suggestions);
     } catch (e) {

@@ -18,19 +18,24 @@ const Body = () => {
   }, [location]);
 
   const getRestaurantData = async () => {
-    setAllRestaurants(null);
-    setFilteredRestaurants(null);
-    const { latitude, longitude } = getLocationDetails(location);
-    const url = FETCH_URL.replace('LATITUDE', latitude).replace(
-      'LONGITUDE',
-      longitude
-    );
-    const response = await fetch(url);
-    const resultantData = await response.json();
-    console.log('ResultantData: ', resultantData);
-    const restaurantList = getRestaurantList(resultantData?.data?.cards);
-    setAllRestaurants(restaurantList);
-    setFilteredRestaurants(restaurantList);
+    try {
+      setAllRestaurants(null);
+      setFilteredRestaurants(null);
+      const { latitude, longitude } = getLocationDetails(location);
+      const url = FETCH_URL.replace('LATITUDE', latitude).replace(
+        'LONGITUDE',
+        longitude
+      );
+      const response = await fetch(url);
+      const resultantData = await response.json();
+      console.log('ResultantData: ', resultantData);
+      const restaurantList = getRestaurantList(resultantData?.data?.cards);
+      setAllRestaurants(restaurantList);
+      setFilteredRestaurants(restaurantList);
+    } catch (e) {
+      setAllRestaurants(undefined);
+      setFilteredRestaurants(undefined);
+    }
   };
 
   return (

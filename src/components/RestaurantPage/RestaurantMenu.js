@@ -2,7 +2,7 @@ import React from 'react';
 import MenuList from './MenuList';
 
 const RestaurantMenu = (props) => {
-  const { restaurantMenu } = props;
+  const { restaurantMenu, restaurantDetails } = props;
 
   if (restaurantMenu.length === 0) return null;
 
@@ -13,14 +13,14 @@ const RestaurantMenu = (props) => {
           const { title, itemCards } = element;
           const dataCount = itemCards ? itemCards.length : '';
           return (
-            <>
+            <div key={index}>
               {dataCount && (
-                <div key={index} className='my-2'>
+                <div className='my-2'>
                   <Title title={title} dataCount={dataCount} />
-                  <MenuList menuDetails={itemCards} />
+                  <MenuList menuDetails={itemCards} restaurantDetails={restaurantDetails} />
                 </div>
               )}
-            </>
+            </div>
           );
         })}
     </div>

@@ -32,7 +32,6 @@ const getRestaurantInfo = (data, searchStr) => {
 
 const getMenuDetails = (data) => {
   if (data) {
-    console.log('data: getMenuDetails: ', data);
     const groupedCard = data.filter((element) => {
       if (element.groupedCard) {
         return element;
@@ -115,8 +114,6 @@ const getDishesInfo = (data) => {
 };
 
 const compare = (filter) => {
-  console.log('Filter: Reached in common compare: ', filter);
-
   return (a, b) => {
     if (a.info[filter] > b.info[filter]) {
       return -1;
@@ -170,6 +167,21 @@ const getSortedData = (data, filter) => {
   return [];
 };
 
+const getTotalPrice = (data) => {
+  const keys = Object.keys(data);
+  let totalCartPrice = 0;
+  keys.map((element) => {
+    let actualPrice = 0;
+    const { price, quantity } = data[element];
+    if (price) {
+      actualPrice = price !== 0 ? price / 100 : 0;
+    }
+    const totalPrice = actualPrice * quantity;
+    totalCartPrice += totalPrice;
+  });
+  return Number(totalCartPrice).toFixed(2);
+};
+
 export {
   getRestaurantList,
   getRestaurantInfo,
@@ -177,4 +189,5 @@ export {
   getCuisines,
   getSortedData,
   getQueryData,
+  getTotalPrice,
 };

@@ -10,7 +10,6 @@ const DishCard = (props) => {
   const { info: restaurantInfo } = restaurant;
   const { id: restaurantId, name: restaurantName, avgRatingString, sla } = restaurantInfo;
   const { slaString } = sla;
-  console.log('Dish: ', dish);
   const [imgError, setImgError] = useState(false);
 
   let priceStr = '-';
@@ -60,7 +59,7 @@ const DishCard = (props) => {
               onError={onImgError}
             />
           )}
-          <button className='w-10/12 absolute -bottom-1 left-3 rounded-md shadow-md text-xs font-medium bg-white text-green-500 py-2 px-4 mx-auto'>
+          <button className='w-10/12 absolute -bottom-2 left-3 rounded-md shadow-md text-xs font-medium bg-white text-green-500 py-2 px-4 mx-auto'>
             ADD
           </button>
         </div>

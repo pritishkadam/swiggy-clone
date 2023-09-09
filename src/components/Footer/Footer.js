@@ -4,7 +4,6 @@ import linkedIn from './../../assets/img/linkedin.svg';
 
 const Footer = () => {
   const companyConfig = companySection();
-  console.log('CompanyConfig: ', companyConfig);
   const contactConfig = contactSection();
   const legalConfig = legalSection();
 
@@ -49,9 +48,10 @@ const LinkSection = (props) => {
     <div className='flex flex-col mb-6 lg:self-start'>
       <h2 className='text-gray-500 text-lg font-medium mb-6'>{title}</h2>
       {section &&
-        section.map((element) => {
+        section.map((element, index) => {
           return (
             <a
+              key={index}
               href={element.link}
               className='text-white text-base mb-1 break-words w-56 cursor-pointer'
             >

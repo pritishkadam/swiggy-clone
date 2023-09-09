@@ -31,7 +31,6 @@ const SearchQueryPage = (props) => {
       const response = await fetch(url + finalQuery);
       const responseData = await response.json();
       const resultantData = getQueryData(responseData.data);
-      console.log('ResultantData: ', resultantData);
       setQueryData(resultantData);
     } catch (e) {
       console.error('Error in Search Query Data', e);

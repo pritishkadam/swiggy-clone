@@ -4,11 +4,21 @@ import LocationDropdown from './LocationDropdown';
 import optionsConfig from './optionsConfig';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggle_menu } from '../../utils/locationSlice';
-import {locationConfig} from '../SideBar/locationConfig';
+import { locationConfig } from '../SideBar/locationConfig';
 import { toggle_login } from '../../utils/loginSlice';
+import { useEffect, useState } from 'react';
 
 const HeaderComponent = () => {
   const dispatch = useDispatch();
+  const cart = useSelector((store) => store.cart);
+  const [cartItems, setCartItems] = useState(0);
+
+  useEffect(() => {
+    if (cart) {
+      setCartItems(Object.keys(cart).length);
+    }
+  }, [cart]);
+
   const options = optionsConfig();
 
   const handleClick = () => {
@@ -35,13 +45,22 @@ const HeaderComponent = () => {
             {options &&
               options.map(({ id, title, icon, redirectTo }) => {
                 return (
-                  <li className='mx-2 text-gray-700'>
+                  <li key={id} className='mx-2 text-gray-700'>
                     <Link to={redirectTo}>
                       <h3
                         className='flex items-center font-medium'
-                        onClick={redirectTo === '' ? handleSignIn : ''}
+                        onClick={redirectTo === '' ? handleSignIn : () => {}}
                       >
-                        <img alt='icon' src={icon} className='w-8 p-2' />
+                        {title === 'Cart' ? (
+                          <div className='relative'>
+                            <img alt='icon' src={icon} className='w-8 p-2' />
+                            <span className='absolute text-sm top-0 left-2 mt-[5px] px-1'>
+                              {cartItems}
+                            </span>
+                          </div>
+                        ) : (
+                          <img alt='icon' src={icon} className='w-8 p-2' />
+                        )}
                         <span className='text-base'>{title}</span>
                       </h3>
                     </Link>
