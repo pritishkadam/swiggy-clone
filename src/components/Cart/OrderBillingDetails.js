@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getTotalPrice } from '../../utils/getDetails';
 
 const OrderBillingDetails = () => {
-  const [itemPrice, setItemPrice] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [itemPrice, setItemPrice] = useState('0');
+  const [totalPrice, setTotalPrice] = useState('0');
 
-  const dispatch = useDispatch();
   const cart = useSelector((store) => store.cart);
 
   useEffect(() => {
     const price = getTotalPrice(cart);
     setItemPrice(price);
-    const finalAmount = Number(price + 50 + 13).toFixed(2);
-    setTotalPrice(finalAmount);
+    const finalAmount = Number(price) + 50 + 13;
+    const finalAmountStr = Number(finalAmount).toFixed(2);
+    setTotalPrice(finalAmountStr);
   }, [cart]);
 
   return (

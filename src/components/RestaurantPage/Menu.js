@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../utils/cartSlice';
 
 const Menu = (props) => {
-  const { item, lastRow, restaurantInfo } = props;
+  const { item, lastRow, restaurantInfo, setShowOverlay } = props;
   const { card } = item;
   const { info } = card;
   const { id, name, description, isVeg, imageId, price, defaultPrice } = info;
+  const {restaurantId} = restaurantInfo;
 
   const [showQuantity, setShowQuantity] = useState(false);
   const [quantity, setQuantity] = useState(0);
@@ -24,6 +25,9 @@ const Menu = (props) => {
       const { quantity: foodQuantity } = foodItem;
       setQuantity(foodQuantity);
       setShowQuantity(true);
+    } else {
+      setQuantity(0);
+      setShowQuantity(false);
     }
   }, [cart]);
 
@@ -42,7 +46,18 @@ const Menu = (props) => {
 
   const handleAddButton = () => {
     setShowQuantity(true);
-    dispatch(addToCart(menuDetails));
+    if (cart && Object.keys(cart).length !== 0) {
+      const cartItem = cart[Object.keys(cart)[0]];
+      const { restaurantId: resId } = cartItem;
+      if (restaurantId !== resId) {
+        setShowOverlay(true);
+        setShowQuantity(false);
+      } else {
+        dispatch(addToCart(menuDetails));
+      }
+    } else {
+      dispatch(addToCart(menuDetails));
+    }
   };
 
   const handleRemoveButton = () => {

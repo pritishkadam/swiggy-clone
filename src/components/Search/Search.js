@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getLocationDetails } from '../SideBar/locationConfig';
+import ConfirmationOverlay from './ConfirmationOverlay';
 
 const Search = () => {
   const [cuisines, setCuisines] = useState(null);
@@ -12,8 +13,13 @@ const Search = () => {
   const [callSuggestionAPI, setCallSuggestionAPI] = useState(false);
   const [suggestions, setSuggestions] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const location = useSelector((store) => store.location.locationID);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     getCategoriesData();
@@ -60,40 +66,44 @@ const Search = () => {
     }
   };
 
+  useEffect(()=>{
+    if(showOverlay) {
+      window.document.body.style.overflow = 'hidden';
+    } else {
+      window.document.body.style.overflow = 'unset';
+    }
+  }, [showOverlay])
+
   return (
-    <div className='w-8/12 mx-auto'>
-      <SearchBar
-        searchText={searchText}
-        setSearchText={setSearchText}
-        setCallSuggestionAPI={setCallSuggestionAPI}
-      />
-      {/* <Categories
-        cuisines={cuisines}
-        searchText={searchText}
-        setSearchText={setSearchText}
-        setCallSuggestionAPI={setCallSuggestionAPI}
-      />
-      {callSuggestionAPI && <SuggestionListSkeleton />}
-      {suggestions && (
-        <SuggestionList
-          suggestions={suggestions}
-          setSearchQuery={setSearchQuery}
-        />
-      )} */}
-      {cuisines && (
-        <Outlet
-          context={[
-            searchText,
-            setSearchText,
-            callSuggestionAPI,
-            setCallSuggestionAPI,
-            cuisines,
-            suggestions,
-            setSearchQuery,
-          ]}
-        />
+    <>
+      {showOverlay && (
+        <div>
+          <ConfirmationOverlay setShowOverlay={setShowOverlay} />
+        </div>
       )}
-    </div>
+      <div className='w-8/12 mx-auto'>
+        <SearchBar
+          searchText={searchText}
+          setSearchText={setSearchText}
+          setCallSuggestionAPI={setCallSuggestionAPI}
+        />
+        {cuisines && (
+          <Outlet
+            context={[
+              searchText,
+              setSearchText,
+              callSuggestionAPI,
+              setCallSuggestionAPI,
+              cuisines,
+              suggestions,
+              setSearchQuery,
+              showOverlay,
+              setShowOverlay
+            ]}
+          />
+        )}
+      </div>
+    </>
   );
 };
 

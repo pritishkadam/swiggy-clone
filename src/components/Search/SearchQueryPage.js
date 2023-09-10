@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { getLocationDetails } from '../SideBar/locationConfig';
 
 const SearchQueryPage = (props) => {
-  const { keyword } = props;
+  const { keyword, showOverlay, setShowOverlay } = props;
   const navigate = useNavigate();
   const [queryData, setQueryData] = useState(null);
   const location = useSelector((store) => store.location.locationID);
@@ -55,8 +55,15 @@ const SearchQueryPage = (props) => {
       {queryData === null && <DishCardSkeletonList />}
       <div className='w-full flex flex-wrap justify-between'>
         {queryData &&
-          queryData.map((element) => {
-            return <DishCard dish={element} />;
+          queryData.map((element, index) => {
+            return (
+              <DishCard
+                key={index}
+                dish={element}
+                showOverlay={showOverlay}
+                setShowOverlay={setShowOverlay}
+              />
+            );
           })}
       </div>
     </>

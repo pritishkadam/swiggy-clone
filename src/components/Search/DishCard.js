@@ -1,24 +1,85 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IMG_CDN_URL } from '../../config';
 import star from './../../assets/img/black-star.svg';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart } from './../../utils/cartSlice';
+import ConfirmationOverlay from './ConfirmationOverlay';
 
 const DishCard = (props) => {
-  const { dish } = props;
+  const { dish, showOverlay, setShowOverlay } = props;
   const { info, restaurant } = dish;
-  const { name, price, imageId, ribbon } = info;
+  const { id, name, price, imageId } = info;
   const { info: restaurantInfo } = restaurant;
-  const { id: restaurantId, name: restaurantName, avgRatingString, sla } = restaurantInfo;
+  const {
+    id: restaurantId,
+    name: restaurantName,
+    avgRatingString,
+    sla,
+    areaName,
+    cloudinaryImageId,
+  } = restaurantInfo;
   const { slaString } = sla;
+
+  const restaurantData = {
+    restaurantId,
+    restaurantName,
+    areaName,
+    cloudinaryImageId,
+  };
+
   const [imgError, setImgError] = useState(false);
+  const [showQuantity, setShowQuantity] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const menuDetails = { ...info, ...restaurantData };
+
+  const dispatch = useDispatch();
+  const cart = useSelector((store) => store.cart);
 
   let priceStr = '-';
   if (price) {
     priceStr = price !== 0 ? price / 100 : 0;
   }
 
+  useEffect(() => {
+    if (Object.keys(cart).includes(id)) {
+      const foodItem = cart[id];
+      const { quantity: foodQuantity } = foodItem;
+      console.log('FoodItem: ', foodItem);
+      console.log('FOodQuantity: ', foodQuantity);
+      setQuantity(foodQuantity);
+      setShowQuantity(true);
+    } else {
+      setQuantity(0);
+      setShowQuantity(false);
+    }
+  }, [cart]);
+
   const onImgError = (e) => {
     setImgError(true);
+  };
+
+  const handleAddButton = () => {
+    setShowQuantity(true);
+    if (cart && Object.keys(cart).length !== 0) {
+      const cartItem = cart[Object.keys(cart)[0]];
+      const { restaurantId: resId } = cartItem;
+      if (restaurantId !== resId) {
+        setShowOverlay(true);
+        setShowQuantity(false);
+      } else {
+        dispatch(addToCart(menuDetails));
+      }
+    } else {
+      dispatch(addToCart(menuDetails));
+    }
+  };
+
+  const handleRemoveButton = () => {
+    if (quantity - 1 === 0) {
+      setShowQuantity(false);
+    }
+    dispatch(removeFromCart(menuDetails));
   };
 
   return (
@@ -59,9 +120,25 @@ const DishCard = (props) => {
               onError={onImgError}
             />
           )}
-          <button className='w-10/12 absolute -bottom-2 left-3 rounded-md shadow-md text-xs font-medium bg-white text-green-500 py-2 px-4 mx-auto'>
-            ADD
-          </button>
+          {!showQuantity && (
+            <button
+              onClick={handleAddButton}
+              className='w-10/12 absolute -bottom-2 left-2 rounded-md shadow-md text-xs font-medium bg-white text-green-500 py-2 px-4 mx-auto'
+            >
+              ADD
+            </button>
+          )}
+          {showQuantity && (
+            <div className='w-10/12 flex justify-between items-center absolute -bottom-2 left-3 rounded-md shadow-md text-xs font-medium bg-white text-green-500 px-4 mx-auto'>
+              <button onClick={handleRemoveButton} className=''>
+                <span className='text-lg'>{'−'}</span>
+              </button>
+              <span>{quantity}</span>
+              <button onClick={handleAddButton}>
+                <span className='text-lg'>+</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

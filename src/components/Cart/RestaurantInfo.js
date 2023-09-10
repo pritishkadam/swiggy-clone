@@ -5,6 +5,7 @@ import { IMG_CDN_URL } from './../../config';
 const RestaurantInfo = () => {
   const cart = useSelector((store) => store.cart);
   const [data, setData] = useState(null);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     if (cart && cart.length !== 0) {
@@ -13,16 +14,28 @@ const RestaurantInfo = () => {
     }
   }, [cart]);
 
+  const onImgError = (e) => {
+    setImgError(true);
+  };
+
   return (
     <>
       {data && (
         <div className='w-11/12 flex gap-4'>
           <div id='start' className='w-1/3 h-20 bg-gray-300'>
-            <img
-              src={IMG_CDN_URL + data.imageId}
-              alt='hotel'
-              className='w-full h-full'
-            />
+            {imgError && (
+              <div className='w-full h-full rounded-lg flex justify-center items-center bg-gray-200 text-gray-400 font-medium'>
+                NO IMG
+              </div>
+            )}
+            {!imgError && (
+              <img
+                src={IMG_CDN_URL + data.imageId}
+                alt='hotel'
+                className='w-full h-full'
+                onError={onImgError}
+              />
+            )}
           </div>
           <div id='end' className='self-center'>
             <h2 className='text-lg font-semibold'>{data.restaurantName}</h2>

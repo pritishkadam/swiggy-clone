@@ -17,6 +17,8 @@ const SuggestionContainer = () => {
     cuisines,
     suggestions,
     setSearchQuery,
+    showOverlay,
+    setShowOverlay,
   ] = useOutletContext();
 
   const [searchParams] = useSearchParams();
@@ -24,7 +26,13 @@ const SuggestionContainer = () => {
 
   return (
     <div>
-      {keyword && <SearchQueryPage keyword={keyword} />}
+      {keyword && (
+        <SearchQueryPage
+          keyword={keyword}
+          showOverlay={showOverlay}
+          setShowOverlay={setShowOverlay}
+        />
+      )}
       {!keyword && (
         <>
           <Categories
@@ -34,11 +42,7 @@ const SuggestionContainer = () => {
             setCallSuggestionAPI={setCallSuggestionAPI}
           />
           {callSuggestionAPI && <SuggestionListSkeleton />}
-          {suggestions && (
-            <SuggestionList
-              suggestions={suggestions}
-            />
-          )}
+          {suggestions && <SuggestionList suggestions={suggestions} />}
         </>
       )}
     </div>

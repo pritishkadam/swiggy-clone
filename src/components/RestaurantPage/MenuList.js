@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from './Menu';
 
 const MenuList = (props) => {
-  const { menuDetails, restaurantDetails } = props;
+  const { menuDetails, restaurantDetails,setShowOverlay } = props;
   console.log('restaurantDetails: ', restaurantDetails);
   const { info } = restaurantDetails;
   const { id, name, areaName, cloudinaryImageId } = info;
@@ -12,8 +12,6 @@ const MenuList = (props) => {
     areaName,
     cloudinaryImageId,
   };
-
-  console.log('cloudinaryImageId: ', cloudinaryImageId);
 
   return (
     <div className='my-8'>
@@ -26,6 +24,7 @@ const MenuList = (props) => {
               item={item}
               lastRow={lastRow}
               restaurantInfo={restaurantInfo}
+              setShowOverlay={setShowOverlay}
             />
           );
         })}
