@@ -54,7 +54,7 @@ const HeaderComponent = () => {
                         {title === 'Cart' ? (
                           <div className='relative'>
                             <img alt='icon' src={icon} className='w-8 p-2' />
-                            <span className='absolute text-sm top-0 left-2 mt-[5px] px-1'>
+                            <span className='absolute text-sm top-0 left-2 mt-[6px] px-1'>
                               {cartItems}
                             </span>
                           </div>
