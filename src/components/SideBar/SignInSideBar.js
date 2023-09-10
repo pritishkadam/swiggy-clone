@@ -2,26 +2,28 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cancelBtn from './../../assets/img/cancel-button.svg';
 import { close_login } from '../../utils/loginSlice';
+import { useLocation, useNavigate } from 'react-router';
+import { setLocationID } from '../../utils/locationSlice';
 
 const SignInSideBar = (props) => {
   const { locations } = props;
   const [location, setLocation] = useState('Mumbai');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const isLoginOpen = useSelector((store) => store.login.isLoginOpen);
   // Early Return
   if (!isLoginOpen) return null;
 
-  const handleOnClick = (e) => {
-    setLocation(e.target.value);
-    dispatch(setLocationID(e.target.value));
-  };
+  const { pathname } = useLocation();
 
   const handleClose = () => {
     dispatch(close_login());
   };
 
   const handleSubmit = () => {
-    e.preventDefault();
+    console.log('PathName: ', pathname);
+    navigate(pathname);
   };
 
   return (
@@ -76,7 +78,7 @@ const SignInSideBar = (props) => {
               <button
                 type='submit'
                 className='w-full p-5 bg-orange-500 text-white font-semibold'
-                onSubmit={handleSubmit}
+                disabled={true}
               >
                 LOGIN
               </button>
