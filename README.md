@@ -1,6 +1,26 @@
 # Swiggy Clone - Frontend
 
-This project is a clone of Swiggy - a food delivery application, built using React.js, React Redux Toolkit, Tailwind CSS and many other tools.
+This project is a clone of the Swiggy - a food delivery application, built using React.js, React Redux Toolkit, Tailwind CSS and many other tools.
+
+## Demo Link: [Swiggy Clone](https://swiggy-pritish.netlify.app/)
+
+## Screenshots
+
+#### Swiggy Home Page
+
+![Swiggy Home Page.](/Swiggy_Home_Page.png "Swiggy Home Page")
+
+#### Swiggy Login Page
+
+![Swiggy Login Page.](/Swiggy_Login_Page.png "Swiggy Login Page")
+
+#### Swiggy Search Page
+
+![Swiggy Search Page.](/Swiggy_Search_Page.png "Swiggy Search Page")
+
+#### Swiggy Cart Page
+
+![Swiggy Cart Page.](/Swiggy_Cart_Page.png "Swiggy Cart Page")
 
 ## Tools Used
 
@@ -13,7 +33,7 @@ This project is a clone of Swiggy - a food delivery application, built using Rea
 
 ## Features
 * Restaurant Listing: Display list of restaurants with their details, such name, cuisine type and ratings
-* Shimmer UI: Loading screen which provides better User Experience
+* Shimmer UI: Provides better User Experience
 * Menu Page: Display the list of menu items available in each restaurant
 * Cart Management: Allow users to add items to the cart, update quantity and remove items
 * Search Functionality: Allow users to search for restaurants or menu items
@@ -31,7 +51,7 @@ This project is a clone of Swiggy - a food delivery application, built using Rea
 * Fetching more restaurants based on Infinite Scroll
 * Checkout Page 
 * Payment Integration
-* Fully Responsive
+
 
 ## Tech Stack
 * React: JS Library for building user interfaces
