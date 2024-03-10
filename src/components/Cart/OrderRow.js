@@ -7,7 +7,7 @@ const OrderRow = (props) => {
   if(!data) {
     return null;
   }
-  const { id, name, price } = data;
+  const { id, name, defaultPrice, price } = data;
 
   const [quantity, setQuantity] = useState(0);
   const [displayPrice, setDisplayPrice] = useState(0);
@@ -26,9 +26,13 @@ const OrderRow = (props) => {
   }, [cart]);
 
   const getActualPrice = (price) => {
-    if (price) {
-      return price !== 0 ? price / 100 : 0;
-    }
+    let foodPrice = 0;
+    if (price || price === 0) {
+      foodPrice = price;
+    } else if (defaultPrice || defaultPrice === 0) {
+      foodPrice = defaultPrice;
+    } 
+    return foodPrice !== 0 ? foodPrice / 100 : 0;
   };
 
   let priceStr = '-';
@@ -46,7 +50,7 @@ const OrderRow = (props) => {
       <h3 className='text-sm w-2/5'>{name}</h3>
       <div className='w-1/4 border border-gray-300 flex justify-between items-center font-medium bg-white px-1 mx-auto'>
         <button onClick={handleRemoveButton}>
-          <span className='text-xl'>{'−'}</span>
+          <span className='text-xl text-red-500'>{'−'}</span>
         </button>
         <span className='text-base font-normal'>{quantity}</span>
         <button onClick={handleAddButton}>

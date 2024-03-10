@@ -7,7 +7,6 @@ const OrderList = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const cart = useSelector((store) => store.cart);
 
-  console.log('CArt: ', cart);
   useEffect(() => {
     setCartItems(Object.keys(cart));
   }, [cart]);

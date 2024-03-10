@@ -28,7 +28,6 @@ const Body = () => {
       );
       const response = await fetch(url);
       const resultantData = await response.json();
-      console.log('ResultantData: ', resultantData);
       const restaurantList = getRestaurantList(resultantData?.data?.cards);
       setAllRestaurants(restaurantList);
       setFilteredRestaurants(restaurantList);

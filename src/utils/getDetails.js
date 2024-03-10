@@ -1,19 +1,24 @@
 import { getElement, sortConfig } from '../components/Offers/sortConfig';
+import restaurantList from '../fetchRestaurants';
 
 const getRestaurantList = (data) => {
+  let restaurantAPIData = [];
   if (data) {
-    const restaurant_listing = data.filter((element) => {
-      //   if (element.card.card.id === "restaurant_grid_listing") {
-      if (element.card.card['@type'].includes('GridWidget')) {
-        return element.card.card.gridElements.infoWithStyle.restaurants;
-      }
-    });
-    const { restaurants } =
-      restaurant_listing[0].card.card.gridElements.infoWithStyle;
-
-    return restaurants;
+    restaurantAPIData = data;
+  } else {
+    restaurantAPIData = restaurantList?.data?.cards;
   }
-  return [];
+
+  const restaurant_listing = restaurantAPIData.filter((element) => {
+    //   if (element.card.card.id === "restaurant_grid_listing") {
+    if (element.card.card['@type'].includes('GridWidget')) {
+      return element.card.card.gridElements.infoWithStyle.restaurants;
+    }
+  });
+  const { restaurants } =
+    restaurant_listing[0].card.card.gridElements.infoWithStyle;
+
+  return restaurants;
 };
 
 const getRestaurantInfo = (data, searchStr) => {
@@ -45,8 +50,14 @@ const getMenuDetails = (data) => {
 
 const getMenuItems = (data) => {
   const dataArray = [];
+  let menuAPIData = [];
   if (data) {
-    const menuData = data.map((element) => {
+    menuAPIData = data;
+  } else {
+    menuAPIData = restaurantList?.data?.cards;
+  }
+  if (menuAPIData) {
+    menuAPIData.map((element) => {
       if (element?.card?.card?.['@type'].includes('NestedItemCategory')) {
         const { title, categories } = element?.card?.card;
         dataArray.push(...categories);
@@ -172,9 +183,11 @@ const getTotalPrice = (data) => {
   let totalCartPrice = 0;
   keys.map((element) => {
     let actualPrice = 0;
-    const { price, quantity } = data[element];
-    if (price) {
+    const { defaultPrice, price, quantity } = data[element];
+    if (price || price === 0) {
       actualPrice = price !== 0 ? price / 100 : 0;
+    } else if (defaultPrice || defaultPrice === 0) {
+      actualPrice = defaultPrice > 0 ? defaultPrice / 100 : 0;
     }
     const totalPrice = actualPrice * quantity;
     totalCartPrice += totalPrice;

@@ -34,6 +34,7 @@ const Offers = () => {
   }, []);
 
   useEffect(() => {
+    setFilteredRestaurants(null);
     getRestaurantData();
   }, [filter, location]);
 
@@ -57,18 +58,18 @@ const Offers = () => {
   return (
     <>
       <OfferBanner />
-      {filteredRestaurants === null && <SkeletonCards />}
-      {filteredRestaurants && (
-        <div className='w-2/3 mx-auto'>
-          <div className='flex items-end justify-between'>
-            <span className='text-2xl my-1 font-bold text-gray-700'>
-              All offers ({filteredRestaurants.length})
-            </span>
-            <SortOptions filter={filter} setFilter={setFilter} />
-          </div>
-          <hr className='border-b-gray-300 border-b my-1' />
+
+      <div className='w-2/3 mx-auto'>
+        <div className='flex items-end justify-between'>
+          <span className='text-2xl my-1 font-bold text-gray-700'>
+            All offers {filteredRestaurants && `(${filteredRestaurants.length})`}
+          </span>
+          <SortOptions filter={filter} setFilter={setFilter} />
         </div>
-      )}
+        <hr className='border-b-gray-300 border-b my-1' />
+      </div>
+
+      {filteredRestaurants === null && <SkeletonCards />}
       <div className='card-container w-8/12 flex flex-wrap mx-auto justify-evenly gap-y-8 my-10 z-0'>
         {filteredRestaurants && filteredRestaurants.length === 0 && (
           <h4 className='no-data'>No Data Available</h4>

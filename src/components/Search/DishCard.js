@@ -45,8 +45,6 @@ const DishCard = (props) => {
     if (Object.keys(cart).includes(id)) {
       const foodItem = cart[id];
       const { quantity: foodQuantity } = foodItem;
-      console.log('FoodItem: ', foodItem);
-      console.log('FOodQuantity: ', foodQuantity);
       setQuantity(foodQuantity);
       setShowQuantity(true);
     } else {
@@ -87,12 +85,12 @@ const DishCard = (props) => {
       <div id='header' className='w-full flex border-b-2 border-dotted py-4'>
         <div id='details' className='w-full flex flex-col'>
           <h2 className='text-base font-bold'>By {restaurantName}</h2>
-          <h3 className='w-24 text-xs font-normal flex justify-between gap-1'>
-            <span className='flex'>
+          <h3 className='w-36 text-xs font-normal flex justify-between gap-1 mt-1'>
+            <span className='flex text-gray-700'>
               <img src={star} alt='rating' className='w-3 mr-1' />
-              {avgRatingString}
+              <span className='self-center'>{avgRatingString}</span>
+              <span className='w-full ml-3'>{slaString}</span>
             </span>
-            <span>{slaString}</span>
           </h3>
         </div>
         <Link to={`/restaurant/${restaurantId}`} key={restaurantId}>

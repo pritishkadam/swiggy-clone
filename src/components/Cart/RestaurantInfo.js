@@ -10,7 +10,6 @@ const RestaurantInfo = () => {
   useEffect(() => {
     if (cart && cart.length !== 0) {
       setData(cart[Object.keys(cart)[0]]);
-      console.log('CART: ', cart[Object.keys(cart)[0]]);
     }
   }, [cart]);
 

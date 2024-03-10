@@ -65,6 +65,11 @@ const SearchQueryPage = (props) => {
               />
             );
           })}
+          {queryData && queryData.length === 0 && (
+            <div className='w-full h-full mt-5 mb-5 p-10 rounded-lg flex justify-center items-center bg-gray-200 text-gray-400 font-medium'>
+                Currently, there's no data available
+              </div>
+          )}
       </div>
     </>
   );

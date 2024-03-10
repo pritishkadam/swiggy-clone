@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Categories from './Categories';
 import SuggestionList from './SuggestionList';
 import SuggestionListSkeleton from './SuggestionListSkeleton';
-import { FETCH_URL, SEARCH_LINK_API } from '../../config';
-import { getCuisines } from '../../utils/getDetails';
-import { useSelector } from 'react-redux';
 import { useOutletContext, useSearchParams } from 'react-router-dom';
 import SearchQueryPage from './SearchQueryPage';
 

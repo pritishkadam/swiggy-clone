@@ -22,7 +22,6 @@ const SignInSideBar = (props) => {
   };
 
   const handleSubmit = () => {
-    console.log('PathName: ', pathname);
     navigate(pathname);
   };
 
