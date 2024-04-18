@@ -1,7 +1,7 @@
 import { restaurantList } from '../../../constants/constant';
 import RestaurantCard from '../RestaurantCard';
 import { useEffect, useState } from 'react';
-import SkeletonCards from '../SkeletonCardsList';
+import SkeletonCards from '../SkeletonCard/SkeletonCardsList';
 import { Link } from 'react-router-dom';
 import LocationSideBar from '../SideBar/LocationSideBar';
 import { useSelector } from 'react-redux';

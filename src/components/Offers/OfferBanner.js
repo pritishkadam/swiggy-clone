@@ -15,8 +15,8 @@ const OfferBanner = () => {
         </div>
         <div id='right'>
           <img
-            src='https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/KHu24Gqw_md3ham'
-            alt='offers'
+            src='https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/KHu24Gqw_md3ham'
+            alt='offers-banner'
             className='w-72'
           />
         </div>

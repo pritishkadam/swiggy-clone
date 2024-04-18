@@ -18,8 +18,8 @@ const Footer = () => {
         <div id='start'>
           <a>
             <img
-              src='https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_284/Logo_f5xzza'
-              alt=''
+              src='https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_284/Logo_f5xzza'
+              alt='swiggy-logo'
               className='w-40 my-2  lg:my-0'
             />
           </a>

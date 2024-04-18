@@ -49,7 +49,7 @@ const SignInSideBar = (props) => {
                 <h4 className='w-8 border border-black border-b my-6' />
               </div>
               <img
-                src='https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r'
+                src='https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r'
                 alt=''
                 className='w-28 h-28'
               />

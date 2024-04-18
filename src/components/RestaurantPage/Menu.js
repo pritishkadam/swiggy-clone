@@ -79,7 +79,7 @@ const Menu = (props) => {
           <h3 className='text-xs font-medium text-gray-600'>{description}</h3>
         </div>
         <div id='end' className='relative w-32 h-24 self-center'>
-          {imgError && (
+          {(imgError || !imageId) && (
             <div className='w-32 h-24 rounded-lg flex justify-center items-center bg-gray-200 text-gray-400 font-medium'>
               NO IMG
             </div>

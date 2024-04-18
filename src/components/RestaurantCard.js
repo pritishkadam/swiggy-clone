@@ -2,17 +2,6 @@ import { IMG_CDN_URL } from '../config';
 import ratingStar from './../assets/img/ratingStar.svg';
 import offers from './../assets/img/offers.svg';
 
-// .card {
-//   width: 160px;
-//   padding: 10px;
-//   margin: 10px;
-//   box-shadow: 4px 4px 10px 2px grey;
-//   border-radius: 5px;
-// }
-
-// .card > img {
-//   width: 100%;
-// }
 const getRatingColor = (avgRating) => {
   if (avgRating && !avgRating.isNan) {
     if (Math.floor(avgRating) === 4) {

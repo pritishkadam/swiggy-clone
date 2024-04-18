@@ -6,7 +6,7 @@ const EmptyCart = () => {
       <div>
         <img
           className='w-80 mx-auto mb-0'
-          src='https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0'
+          src='https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0'
           alt=''
         />
         <h2 className='text-3xl font-semibold text-center my-4'>Your cart is empty</h2>

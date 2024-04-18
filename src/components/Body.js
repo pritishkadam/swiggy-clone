@@ -1,6 +1,6 @@
 import RestaurantCard from './RestaurantCard';
 import { useEffect, useState } from 'react';
-import SkeletonCards from './SkeletonCardsList';
+import SkeletonCards from './SkeletonCard/SkeletonCardsList';
 import { Link } from 'react-router-dom';
 import { FETCH_URL } from '../config';
 import { getRestaurantList } from '../utils/getDetails';
@@ -41,7 +41,7 @@ const Body = () => {
     <>
       <Link to='/'>
         <img
-          src='https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/rng/md/carousel/production/faxdufvkcllzse67eqry'
+          src='https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/rng/md/carousel/production/faxdufvkcllzse67eqry'
           className='w-2/3 my-6 mx-auto'
         />
       </Link>

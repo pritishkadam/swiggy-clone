@@ -6,7 +6,7 @@ import rupee from './../../assets/img/rs.svg';
 
 const RestaurantDetails = (props) => {
   const { restaurantDetails, restaurantCoupons } = props;
-  const { info } = restaurantDetails;
+  const { info } = restaurantDetails ? restaurantDetails : {};
   const {
     name,
     areaName,
@@ -15,8 +15,8 @@ const RestaurantDetails = (props) => {
     avgRatingString,
     totalRatingsString,
     sla,
-  } = info;
-  const { slaString, lastMileTravelString } = sla;
+  } = info ? info : {};
+  const { slaString, lastMileTravelString } = sla ? sla : {};
   const cuisinesStr = cuisines ? cuisines.join(', ') : '';
   return (
     <div className='flex flex-col'>

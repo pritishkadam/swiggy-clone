@@ -3,8 +3,8 @@ import Menu from './Menu';
 
 const MenuList = (props) => {
   const { menuDetails, restaurantDetails,setShowOverlay } = props;
-  const { info } = restaurantDetails;
-  const { id, name, areaName, cloudinaryImageId } = info;
+  const { info } = restaurantDetails ? restaurantDetails : {};
+  const { id, name, areaName, cloudinaryImageId } = info ? info : {};
   const restaurantInfo = {
     restaurantId: id,
     restaurantName: name,

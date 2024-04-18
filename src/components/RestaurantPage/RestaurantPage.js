@@ -33,7 +33,8 @@ const RestaurantPage = () => {
     );
     const response = await fetch(url + resId);
     const data = await response.json();
-    const restaurantData = getRestaurantInfo(data.data.cards, 'Restaurant');
+    // Gets Restaurant Menu
+    const restaurantData = getRestaurantInfo(data.data.cards, 'swiggy.presentation.food.v2');
     const restaurantCoupons = getRestaurantInfo(data.data.cards, 'GridWidget');
     const menuDetails = getMenuDetails(data.data.cards);
     setRestaurantDetails(restaurantData);
