@@ -6,8 +6,6 @@ import { useLocation, useNavigate } from 'react-router';
 import { setLocationID } from '../../utils/locationSlice';
 
 const SignInSideBar = (props) => {
-  const { locations } = props;
-  const [location, setLocation] = useState('Mumbai');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,10 +26,10 @@ const SignInSideBar = (props) => {
   return (
     <div className='absolute z-20'>
       <div
-        className='w-screen h-screen bg-black opacity-80'
+        className='w-screen h-screen fixed bg-black bg-opacity-80'
         onClick={handleClose}
       />
-      <div className='w-2/5 h-full bg-white fixed top-0 right-0 font-roboto'>
+      <div className='w-2/5 h-screen bg-white fixed top-0 right-0 font-roboto'>
         <div className='flex flex-col w-2/3 mx-12 my-10 gap-4'>
           <button onClick={handleClose} className='self-start'>
             <img alt='cancel' src={cancelBtn} className='w-4' />

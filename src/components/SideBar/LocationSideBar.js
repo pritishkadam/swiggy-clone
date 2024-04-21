@@ -25,10 +25,10 @@ const LocationSideBar = (props) => {
   return (
     <div className='absolute z-20'>
       <div
-        className='w-screen h-screen bg-black opacity-80'
+        className='w-screen h-screen fixed bg-black opacity-80'
         onClick={handleClose}
       />
-      <div className='w-1/3 h-full bg-white fixed top-0 left-0 font-roboto'>
+      <div className='w-1/3 h-screen bg-white fixed top-0 left-0 font-roboto'>
         <div className='flex flex-col w-2/3 mx-auto my-10 gap-4'>
           <button onClick={handleClose} className='self-start'>
             <img alt='cancel' src={cancelBtn} className='w-4' />

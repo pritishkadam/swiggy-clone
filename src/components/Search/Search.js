@@ -87,7 +87,7 @@ const Search = () => {
           setSearchText={setSearchText}
           setCallSuggestionAPI={setCallSuggestionAPI}
         />
-        {cuisines && (
+        {/* {cuisines && ( */}
           <Outlet
             context={[
               searchText,
@@ -101,7 +101,7 @@ const Search = () => {
               setShowOverlay
             ]}
           />
-        )}
+        {/* )} */}
       </div>
     </>
   );

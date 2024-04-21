@@ -1,5 +1,6 @@
 import React from 'react';
 import { IMG_CDN_URL } from '../../config';
+import CategoriesSkeleton from './CategoriesSkeleton';
 
 const Categories = (props) => {
   const { cuisines, searchText, setSearchText, setCallSuggestionAPI } = props;
@@ -7,7 +8,7 @@ const Categories = (props) => {
   return (
     <div className='w-full'>
       <h3 className='my-4 text-xl font-bold'>Popular Cuisines</h3>
-      <div className='w-full overflow-x-scroll flex'>
+      <div className='w-full overflow-x-scroll flex mb-10'>
         {cuisines &&
           cuisines.map((element) => {
             return (
@@ -19,8 +20,9 @@ const Categories = (props) => {
               />
             );
           })}
+        {!cuisines && <CategoriesSkeleton />}
       </div>
-      {searchText === '' && <div className='mb-40' />}
+      {searchText === '' && <div className='mb-10' />}
     </div>
   );
 };

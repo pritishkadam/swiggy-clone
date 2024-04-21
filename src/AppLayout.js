@@ -15,7 +15,7 @@ const AppLayout = () => {
   return (
     <>
       {isLocationOpen && <LocationSideBar locations={locations} />}
-      {isLoginOpen && <SignInSideBar locations={locations} />}
+      {isLoginOpen && <SignInSideBar />}
       <HeaderComponent />
       <Outlet />
       <Footer />
