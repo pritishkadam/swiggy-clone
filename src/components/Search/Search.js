@@ -4,6 +4,7 @@ import { getCuisines } from './../../utils/getDetails';
 import SearchBar from './SearchBar';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { getLocationDetails } from '../SideBar/locationConfig';
 import ConfirmationOverlay from './ConfirmationOverlay';
 
@@ -15,11 +16,23 @@ const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showOverlay, setShowOverlay] = useState(false);
 
+  const [searchParams] = useSearchParams();
+  const keyword = searchParams.get('query');
+
   const location = useSelector((store) => store.location.locationID);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (keyword) {
+      setSearchText(keyword);
+    }
   }, []);
+
+  useEffect(() => {
+    if (searchText) {
+      setCallSuggestionAPI(true);
+    }
+  }, [searchText]);
 
   useEffect(() => {
     getCategoriesData();
@@ -66,13 +79,13 @@ const Search = () => {
     }
   };
 
-  useEffect(()=>{
-    if(showOverlay) {
+  useEffect(() => {
+    if (showOverlay) {
       window.document.body.style.overflow = 'hidden';
     } else {
       window.document.body.style.overflow = 'unset';
     }
-  }, [showOverlay])
+  }, [showOverlay]);
 
   return (
     <>
@@ -88,19 +101,19 @@ const Search = () => {
           setCallSuggestionAPI={setCallSuggestionAPI}
         />
         {/* {cuisines && ( */}
-          <Outlet
-            context={[
-              searchText,
-              setSearchText,
-              callSuggestionAPI,
-              setCallSuggestionAPI,
-              cuisines,
-              suggestions,
-              setSearchQuery,
-              showOverlay,
-              setShowOverlay
-            ]}
-          />
+        <Outlet
+          context={[
+            searchText,
+            setSearchText,
+            callSuggestionAPI,
+            setCallSuggestionAPI,
+            cuisines,
+            suggestions,
+            setSearchQuery,
+            showOverlay,
+            setShowOverlay,
+          ]}
+        />
         {/* )} */}
       </div>
     </>
