@@ -1,4 +1,4 @@
-import SwiggyIcon from './../../assets/img/logo.svg';
+import SwiggyIcon from './../../assets/img/logo.png';
 import { Link } from 'react-router-dom';
 
 const Logo = () => {

@@ -12,9 +12,9 @@ const SortOptions = (props) => {
           return (
             <div
               key={id}
-              className={filter === key ? 'border-b border-b-gray-800 mx-2' : 'mx-2'}
+              className={filter === key ? 'border-b border-b-gray-800 mx-0 md:mx-2' : 'mx-2'}
             >
-              <button onClick={() => setFilter(key)} className='my-1 text-base text-gray-600'>{title}</button>
+              <button onClick={() => setFilter(key)} className='my-1 text-xs md:text-base text-gray-600'>{title}</button>
             </div>
           );
         })}

@@ -47,8 +47,8 @@ const OrderRow = (props) => {
 
   return (
     <div className='flex items-center mb-2'>
-      <h3 className='text-sm w-2/5'>{name}</h3>
-      <div className='w-1/4 border border-gray-300 flex justify-between items-center font-medium bg-white px-1 mx-auto'>
+      <h3 className='text-sm w-3/5 md:w-2/5'>{name}</h3>
+      <div className='w-2/4 md:w-1/4 border border-gray-300 flex justify-between items-center font-medium bg-white px-1 mx-auto'>
         <button onClick={handleRemoveButton}>
           <span className='text-xl text-red-500'>{'−'}</span>
         </button>

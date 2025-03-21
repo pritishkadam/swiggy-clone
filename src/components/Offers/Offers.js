@@ -59,9 +59,9 @@ const Offers = () => {
     <>
       <OfferBanner />
 
-      <div className='w-2/3 mx-auto'>
-        <div className='flex items-end justify-between'>
-          <span className='text-2xl my-1 font-bold text-gray-700'>
+      <div className='w-full md:w-2/3 mx-auto'>
+        <div className='w-full flex items-end justify-between'>
+          <span className='text-xs md:text-2xl gap-4 my-1 font-bold text-gray-700'>
             All offers {filteredRestaurants && `(${filteredRestaurants.length})`}
           </span>
           <SortOptions filter={filter} setFilter={setFilter} />
@@ -70,7 +70,7 @@ const Offers = () => {
       </div>
 
       {filteredRestaurants === null && <SkeletonCards />}
-      <div className='card-container w-8/12 flex flex-wrap mx-auto justify-evenly gap-y-8 my-10 z-0'>
+      <div className='card-container w-full md:w-8/12 flex flex-wrap mx-auto justify-evenly gap-y-8 my-10 z-0'>
         {filteredRestaurants && filteredRestaurants.length === 0 && (
           <h4 className='no-data'>No Data Available</h4>
         )}

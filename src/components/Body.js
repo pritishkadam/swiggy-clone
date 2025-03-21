@@ -42,7 +42,7 @@ const Body = () => {
       <Link to='/'>
         <img
           src='https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/rng/md/carousel/production/faxdufvkcllzse67eqry'
-          className='w-2/3 my-6 mx-auto'
+          className='w-4/5 md:w-2/3 my-6 mx-auto'
         />
       </Link>
       {allRestaurants === null && <SkeletonCards />}

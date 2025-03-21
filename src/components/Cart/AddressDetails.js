@@ -6,7 +6,7 @@ const AddressDetails = () => {
 
   return (
     <div className='w-full h-auto bg-white p-5 mb-5'>
-      <div id='top' className='w-2/3 relative flex'>
+      <div id='top' className='w-full md:w-2/3 relative flex'>
         <svg
           stroke='currentColor'
           fill='currentColor'
@@ -31,7 +31,7 @@ const AddressDetails = () => {
           </h3>
         </div>
       </div>
-      <div id='bottom' className='border w-1/2 h-44 mx-7 my-4'>
+      <div id='bottom' className='border w-3/4 md:w-1/2 h-44 mx-7 my-4'>
         <div className='flex flex-col justify-between p-4 border h-full'>
           <div className='flex items-start'>
             <svg
