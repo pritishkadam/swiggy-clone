@@ -59,7 +59,7 @@ const Body = () => {
         )}
         <hr className='border-b-gray-300 border-b' />
       </div>
-      <div className='card-container w-8/12 flex flex-wrap mx-auto justify-evenly gap-y-8 my-10 z-0'>
+      <div className='card-container w-10/12 sm:w-8/12 flex flex-wrap mx-auto justify-evenly gap-y-8 my-10 z-0'>
         {filteredRestaurants && filteredRestaurants.length === 0 && (
           <h4 className='no-data'>No Data Available</h4>
         )}
